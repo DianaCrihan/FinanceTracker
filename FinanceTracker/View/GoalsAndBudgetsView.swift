@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct GoalsAndBudgetsView: View {
+    let budgets: [Budget]
+    
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Goals and Budgets")
                 .font(.headline)
-            Text("3 goals active · 2 budgets overspent")
-                .font(.body)
+            ForEach(budgets) { budget in
+                HStack {
+                    Text(budget.category)
+                    Spacer()
+                    Text("$\(budget.spent, specifier: "%.2f") / $\(budget.limit, specifier: "%.2f")")
+                        .foregroundColor(budget.spent > budget.limit ? .red : .green)
+                }
+            }
         }
         .padding()
         .background(Color.green.opacity(0.1))
@@ -22,5 +31,5 @@ struct GoalsAndBudgetsView: View {
 }
 
 #Preview {
-    GoalsAndBudgetsView()
+    GoalsAndBudgetsView(budgets: MockData.budgets)
 }
