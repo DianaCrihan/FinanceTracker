@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct TotalBalanceView: View {
+    let accounts: [Account]
+    
+    var totalBalance: Double {
+        accounts.reduce(0) { $0 + $1.balance }
+    }
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text("Total Balance")
                 .font(.headline)
-            Text("$12,345.67")
+            Text("$\(totalBalance, specifier: "%.2f")")
                 .font(.largeTitle)
                 .bold()
-                .foregroundColor(.green)
+                .foregroundColor(totalBalance < 0 ? .red : .green)
         }
         .padding()
         .background(Color.blue.opacity(0.1))
@@ -24,5 +30,5 @@ struct TotalBalanceView: View {
 }
 
 #Preview {
-    TotalBalanceView()
+    TotalBalanceView(accounts: MockData.accounts)
 }

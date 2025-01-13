@@ -8,11 +8,18 @@
 import SwiftUI
 
 struct SpendingSummaryView: View {
+    let transactions: [Transaction]
+    
+    var totalSpent: Double {
+        transactions.reduce(0) { $0 + $1.amount }
+    }
+    
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Spending Summary")
                 .font(.headline)
-            Text("You've spent $1,200 this month.")
+            Text("You've spent $\(totalSpent, specifier: "%.2f") this month.")
                 .font(.body)
         }
         .padding()
@@ -22,5 +29,5 @@ struct SpendingSummaryView: View {
 }
 
 #Preview {
-    SpendingSummaryView()
+    SpendingSummaryView(transactions: MockData.transactions)
 }

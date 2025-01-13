@@ -13,13 +13,13 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     // Total Balance Section
-                    TotalBalanceView()
+                    TotalBalanceView(accounts: MockData.accounts)
 
                     // Spending Summary Section
-                    SpendingSummaryView()
+                    SpendingSummaryView(transactions: MockData.transactions)
 
                     // Goals and Budgets Section
-                    GoalsAndBudgetsView()
+                    GoalsAndBudgetsView(budgets: MockData.budgets)
 
                     // Quick Actions Section
                     QuickActionsView()
