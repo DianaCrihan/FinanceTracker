@@ -10,11 +10,9 @@ import SwiftUI
 struct QuickActionsView: View {
     var body: some View {
         HStack(spacing: 15) {
-            Button(action: {
-                print("Add Transaction")
-            }) {
+            NavigationLink(destination: AddTransactionView()) {
                 Text("Add Transaction")
-                    .frame(maxWidth: .infinity)
+                    .font(.headline)
                     .padding()
                     .background(Color.blue)
                     .foregroundColor(.white)
