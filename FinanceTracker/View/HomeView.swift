@@ -23,6 +23,12 @@ struct HomeView: View {
 
                     // Quick Actions Section
                     QuickActionsView()
+                    
+                    ForEach(MockData.transactions) { transaction in
+                        NavigationLink(destination: TransactionDetailView(transaction: transaction)) {
+                            TransactionRowView(transaction: transaction)
+                        }
+                    }
                 }
                 .padding()
             }
